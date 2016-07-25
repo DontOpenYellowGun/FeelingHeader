@@ -31,7 +31,7 @@ public class WaveManager {
                 // horizontal animation. 200 = wave.png width
                 ObjectAnimator maskXAnimator = ObjectAnimator.ofFloat(textView, "maskX", 0, -200);
                 maskXAnimator.setRepeatCount(ValueAnimator.INFINITE);
-                maskXAnimator.setDuration(200);
+                maskXAnimator.setDuration(300);
                 maskXAnimator.setStartDelay(0);
 
                 int h = textView.getHeight();
@@ -43,7 +43,7 @@ public class WaveManager {
                 ObjectAnimator maskYAnimator = ObjectAnimator.ofFloat(textView, "maskY", h/2, -h/2);
                 maskYAnimator.setRepeatCount(ValueAnimator.INFINITE);
 //                maskYAnimator.setRepeatMode(ValueAnimator.REVERSE);
-                maskYAnimator.setDuration(1500);
+                maskYAnimator.setDuration(2000);
                 maskYAnimator.setStartDelay(0);
 
                 // now play both animations together
