@@ -4,51 +4,33 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/rl_root_head"
         android:layout_width="match_parent"
         android:layout_height="@dimen/refresh_header_height_twitter"
-        android:layout_gravity="center">
+        >
 
         <ImageView
+            android:background="@drawable/shape_header_refresh"
+            android:id="@+id/ivShadow"
+            android:layout_width="30dp"
+            android:layout_height="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+
+        <com.sven.feelingheader.widget.WaveText
             android:layout_centerInParent="true"
-            android:id="@+id/iv_loading"
-            android:background="@drawable/feelingloading"
-            android:layout_width="120dp"
-            android:layout_height="36dp"
-            />
-
-        <!--<ImageView
-            android:id="@+id/ivArrow"
+            android:textStyle="bold"
+            android:id="@+id/my_text_view"
+            android:text="@string/feeling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
-            android:layout_toLeftOf="@+id/tvRefresh"
-            android:background="@mipmap/twitter_pull_arrow" />
-
-        <ImageView
-            android:id="@+id/ivSuccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
-            android:layout_toLeftOf="@+id/tvRefresh"
-            android:background="@mipmap/qq_refresh_success" />
-
-        <ProgressBar
-            android:id="@+id/progressbar"
-            style="?android:attr/progressBarStyleSmallInverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="48dp"
-            android:layout_toLeftOf="@+id/tvRefresh" />
-
-        <TextView
-            android:id="@+id/tvRefresh"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="?attr/colorPrimary" />-->
+            android:textColor="#D7D7D7"
+            android:textSize="30sp"
+           />
+
     </RelativeLayout>
+
 </com.sven.feelingheader.widget.FeelingHeader>

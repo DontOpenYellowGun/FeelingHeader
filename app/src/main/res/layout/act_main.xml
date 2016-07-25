@@ -6,19 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.sven.feelingheader.Act_Main">
 
-
-    <com.sven.feelingheader.widget.TitanicTextView
+   <!-- <com.sven.feelingheader.widget.WaveText
+        android:textStyle="bold"
         android:id="@+id/my_text_view"
         android:text="@string/feeling"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#212121"
-        android:textSize="70sp"
+        android:textSize="30sp"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"/>
-
+        android:paddingRight="5dp"/>-->
 
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,7 +28,6 @@
         android:layout_height="match_parent"
         android:background="@color/style_window_background"
         app:swipe_style="classic"
-        android:visibility="gone"
         >
 
         <include

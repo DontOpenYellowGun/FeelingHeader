@@ -2,59 +2,67 @@ package com.sven.feelingheader.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.sven.feelingheader.R;
 
 /**
  * Created by Sven on 2016/7/23 0023.
  *
  */
 
-public class FeelingWave extends ImageView{
+public class WaveImage extends ImageView{
 
-    // callback fired at first onSizeChanged
+    // 第一次尺寸改变时回调
     private AnimationSetupCallback animationSetupCallback;
-    // wave shader coordinates
+    //波浪着色的坐标
     private float maskX, maskY;
-    // if true, the shader will display the wave
+    // 判断波浪是否上下移动,如果是的话就会重新绘制波浪
     private boolean sinking;
-    // true after the first onSizeChanged
+    // 第一次尺寸改变后变为true
     private boolean setUp;
-    // shader containing a repeated wave
-    /*渲染器*/
+    // 重复绘制波浪的着色器
     private BitmapShader shader;
     // shader matrix
     private Matrix shaderMatrix;
-    // wave drawable
+    //波浪图片
     private Drawable wave;
     // (getHeight() - waveHeight) / 2
     private float offsetY;
 
+    private Paint paint;
+
     interface AnimationSetupCallback {
-        void onSetupAnimation(FeelingWave titanicTextView);
+        void onSetupAnimation(WaveImage titanicTextView);
     }
 
-    public FeelingWave(Context context) {
+    public WaveImage(Context context) {
         super(context);
         init();
     }
 
-    public FeelingWave(Context context, AttributeSet attrs) {
+    public WaveImage(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public FeelingWave(Context context, AttributeSet attrs, int defStyleAttr) {
+    public WaveImage(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public FeelingWave(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public WaveImage(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
@@ -104,47 +112,49 @@ public class FeelingWave extends ImageView{
     @Override
     public void setDrawingCacheBackgroundColor(int color) {
         super.setDrawingCacheBackgroundColor(color);
-//        createShader();
+        createShader();
+    }
+
+    @Override
+    public void setBackgroundColor(int color) {
+        super.setBackgroundColor(color);
+        createShader();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-//        createShader();
+        createShader();
         if (!setUp) {
             setUp = true;
             if (animationSetupCallback != null) {
-                animationSetupCallback.onSetupAnimation(FeelingWave.this);
+                animationSetupCallback.onSetupAnimation(WaveImage.this);
             }
         }
     }
 
-/*    *//**
-     * Create the shader
-     * draw the wave with current color for a background
-     * repeat the bitmap horizontally, and clamp colors vertically
-     *//*
     private void createShader() {
 
-        *//*获取到波浪图*//*
+        /*获取到波浪图*/
         if (wave == null) {
             wave = getResources().getDrawable(R.drawable.wave);
         }
-        *//*获取到波浪图的宽高*//*
+        /*获取到波浪图的宽高*/
         int waveW = wave.getIntrinsicWidth();
         int waveH = wave.getIntrinsicHeight();
 
-        *//*创建画布*//*
+        /*获取波浪图片的宽高创建画布*/
         Bitmap b = Bitmap.createBitmap(waveW, waveH, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
 
-        c.drawColor(getDrawingCacheBackgroundColor());
+        c.drawColor(Color.BLUE);
 
         wave.setBounds(0, 0, waveW, waveH);
         wave.draw(c);
 
         shader = new BitmapShader(b, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP);
-        getPaint().setShader(shader);
+        paint = new Paint();
+        paint.setShader(shader);
 
         offsetY = (getHeight() - waveH) / 2;
     }
@@ -152,24 +162,29 @@ public class FeelingWave extends ImageView{
     @Override
     protected void onDraw(Canvas canvas) {
 
+        /* //像素点相对画布向右100sp,向下移动200sp
+        matrix.setTranslate(100, 200);
+        //1.原图  2.矩阵   3.画笔
+        canvas.drawBitmap(bitmap, matrix, paint); */
+
         // modify text paint shader according to sinking state
         if (sinking && shader != null) {
             // first call after sinking, assign it to our paint
-            if (getPaint().getShader() == null) {
-                getPaint().setShader(shader);
+            if (paint.getShader() == null) {
+                paint.setShader(shader);
             }
 
-            *//*设置x.y轴的的位移*//*
+            /*设置x.y轴的的位移*/
             // translate shader accordingly to maskX maskY positions
             // maskY is affected by the offset to vertically center the wave
 //            shaderMatrix.setTranslate(maskX, maskY + offsetY);
-            shaderMatrix.setTranslate(maskX, 0);
+            shaderMatrix.setTranslate(maskX, maskY + offsetY);
 
             // assign matrix to invalidate the shader
             shader.setLocalMatrix(shaderMatrix);
         } else {
-            getPaint().setShader(null);
+            paint.setShader(null);
         }
         super.onDraw(canvas);
-    }*/
+    }
 }

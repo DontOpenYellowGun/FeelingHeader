@@ -7,8 +7,7 @@ import android.animation.ValueAnimator;
 import android.os.Build;
 import android.view.animation.LinearInterpolator;
 
-
-public class Titanic {
+public class WaveManager {
 
     private AnimatorSet animatorSet;
     private Animator.AnimatorListener animatorListener;
@@ -21,7 +20,7 @@ public class Titanic {
         this.animatorListener = animatorListener;
     }
 
-    public void start(final TitanicTextView textView) {
+    public void start(final WaveText textView) {
 
         final Runnable animate = new Runnable() {
             @Override
@@ -87,9 +86,9 @@ public class Titanic {
         };
 
         if (!textView.isSetUp()) {
-            textView.setAnimationSetupCallback(new TitanicTextView.AnimationSetupCallback() {
+            textView.setAnimationSetupCallback(new WaveText.AnimationSetupCallback() {
                 @Override
-                public void onSetupAnimation(final TitanicTextView target) {
+                public void onSetupAnimation(final WaveText target) {
                     animate.run();
                 }
             });

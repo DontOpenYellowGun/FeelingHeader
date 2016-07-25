@@ -13,15 +13,10 @@ import android.widget.TextView;
 
 import com.sven.feelingheader.R;
 
-/**
- * Titanic
- * romainpiel
- * 13/03/2014
- */
-public class TitanicTextView extends TextView {
+public class WaveText extends TextView {
 
     interface AnimationSetupCallback {
-        void onSetupAnimation(TitanicTextView titanicTextView);
+        void onSetupAnimation(WaveText waveText);
     }
 
     // callback fired at first onSizeChanged
@@ -33,7 +28,6 @@ public class TitanicTextView extends TextView {
     // true after the first onSizeChanged
     private boolean setUp;
     // shader containing a repeated wave
-    /*渲染器*/
     private BitmapShader shader;
     // shader matrix
     private Matrix shaderMatrix;
@@ -42,17 +36,17 @@ public class TitanicTextView extends TextView {
     // (getHeight() - waveHeight) / 2  Y轴偏移量
     private float offsetY;
 
-    public TitanicTextView(Context context) {
+    public WaveText(Context context) {
         super(context);
         init();
     }
 
-    public TitanicTextView(Context context, AttributeSet attrs) {
+    public WaveText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TitanicTextView(Context context, AttributeSet attrs, int defStyle) {
+    public WaveText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -120,7 +114,7 @@ public class TitanicTextView extends TextView {
         if (!setUp) {
             setUp = true;
             if (animationSetupCallback != null) {
-                animationSetupCallback.onSetupAnimation(TitanicTextView.this);
+                animationSetupCallback.onSetupAnimation(WaveText.this);
             }
         }
     }
