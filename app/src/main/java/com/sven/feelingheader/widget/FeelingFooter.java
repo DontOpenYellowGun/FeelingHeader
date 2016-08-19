@@ -8,9 +8,7 @@ import com.aspsine.swipetoloadlayout.SwipeLoadMoreFooterLayout;
 import com.sven.feelingheader.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
-/**
- * Created by Aspsine on 2015/9/2.
- */
+
 public class FeelingFooter extends SwipeLoadMoreFooterLayout {
     private TextView tvLoadMore;
 

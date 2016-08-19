@@ -47,8 +47,6 @@ public class FeelingHeader extends SwipeRefreshHeaderLayout {
         super(context, attrs, defStyleAttr);
         this.context = context;
         mHeaderHeight = getResources().getDimensionPixelOffset(R.dimen.refresh_header_height_twitter);
-
-
     }
 
     @Override
@@ -56,7 +54,7 @@ public class FeelingHeader extends SwipeRefreshHeaderLayout {
         super.onFinishInflate();
         tvLoading = (WaveText) findViewById(R.id.my_text_view);
         /*设置字体*/
-//        tvLoading.setTypeface(Typefaces.get(getContext(), "Fashion.ttf"));
+//      tvLoading.setTypeface(Typefaces.get(getContext(), "Fashion.ttf"));
         ivShadow = (ImageView) findViewById(R.id.ivShadow);
         waveManager = new WaveManager();
 
